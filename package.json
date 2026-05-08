@@ -1,18 +1,16 @@
 {
   "name": "arti-3",
   "version": "1.0.0",
-  "description": "ARTI-3 Application with Express server and Vite frontend",
+  "description": "ARTI-3 Application with Express server",
   "type": "module",
   "main": "server.ts",
   "scripts": {
     "dev": "tsx watch server.ts",
-    "build": "echo 'Build completed'",
     "start": "tsx server.ts"
   },
   "dependencies": {
     "express": "^4.18.2",
-    "cors": "^2.8.5",
-    "vite": "^5.0.0"
+    "cors": "^2.8.5"
   },
   "devDependencies": {
     "@types/express": "^4.17.17",
