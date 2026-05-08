@@ -1,5 +1,33 @@
-"scripts": {
-  "build": "tsc server.ts",
-  "vercel-build": "echo 'No build step needed'",
-  "start": "node server.js"
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "server.ts",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "dist" }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "server.ts"
+    },
+    {
+      "src": "/assets/(.*)",
+      "dest": "/assets/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "dist/$1",
+      "check": true
+    },
+    {
+      "src": "/(.*)",
+      "dest": "dist/index.html"
+    }
+  ]
 }
