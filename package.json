@@ -1,5 +1,19 @@
-"scripts": {
-  "build": "tsc server.ts",
-  "vercel-build": "echo 'No build step needed'",
-  "start": "node server.js"
+{
+  "name": "arti-3",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "tsc server.ts",
+    "vercel-build": "echo 'Preparando ARTI 3 para la venta...'",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "@google/generative-ai": "^0.1.0",
+    "dotenv": "^16.0.3"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@types/node": "^18.0.0",
+    "@types/express": "^4.17.17"
+  }
 }
