@@ -3,7 +3,7 @@ import cors from "cors";
 
 async function startServer() {
   const app = express();
-  const PORT = process.env.PORT || 3000;
+  const PORT = number (process.env.PORT) || 3000;
 
   app.use(cors());
   app.use(express.json());
