@@ -6,9 +6,8 @@
   "main": "server.ts",
   "scripts": {
     "dev": "tsx watch server.ts",
-    "build": "vite build",
-    "preview": "vite preview",
-    "start": "node dist/server.js"
+    "build": "echo 'Build skipped for Vercel'",
+    "start": "tsx server.ts"
   },
   "dependencies": {
     "express": "^4.18.2",
