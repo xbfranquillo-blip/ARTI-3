@@ -1,11 +1,9 @@
 import express from "express";
-import { createServer as createViteServer } from "vite";
-import path from "path";
 import cors from "cors";
 
 async function startServer() {
   const app = express();
-  const PORT = 3000;
+  const PORT = process.env.PORT || 3000;
 
   app.use(cors());
   app.use(express.json());
@@ -36,22 +34,20 @@ async function startServer() {
   app.use("/api", apiRouter);
   // --------------------------------
 
-  // Frontend Vite Middleware
-  if (process.env.NODE_ENV !== "production") {
-    const vite = await createViteServer({
-      server: { middlewareMode: true },
-      appType: "spa",
-    });
-    app.use(vite.middlewares);
-  } else {
-    const distPath = path.join(process.cwd(), 'dist');
-    app.use(express.static(distPath));
-    app.get('*', (req, res) => res.sendFile(path.join(distPath, 'index.html')));
-  }
+  // Serve static files if they exist
+  app.use(express.static("public"));
+
+  // Health check endpoint
+  app.get("/", (req, res) => {
+    res.json({ message: "ARTI-3 Server is running!", timestamp: new Date() });
+  });
 
   app.listen(PORT, "0.0.0.0", () => {
-    console.log(`Servidor  corriendo en http://0.0.0.0:${PORT}`);
+    console.log(`Servidor corriendo en http://0.0.0.0:${PORT}`);
   });
 }
 
-startServer();
+startServer().catch(err => {
+  console.error("Error starting server:", err);
+  process.exit(1);
+});
